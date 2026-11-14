@@ -1,0 +1,53 @@
+{
+  "schema": "ulak-region-screen-v1",
+  "queried_utc": "2026-11-14T06:15:00Z",
+  "method": "NASA CMR granule search (public, no login) per collection and bounding box, grouped by STACK_ID (track_direction_frame) and polarization token. Counts are catalog records, not downloaded or inspected pixels.",
+  "collections_checked": {
+    "NISAR_L2_GCOV_BETA_V1": "C3622214170-ASF (pre-calibration, CRID X050xx)",
+    "NISAR_L2_GCOV_PROVISIONAL_V1": "C2854338529-ASF (CRID P05023)",
+    "NISAR_L2_GCOV_V1": "C3622241360-ASF (VALIDATED, CRID P05036, acquisitions from 2026-10-21)"
+  },
+  "regions": [
+    {
+      "id": "sudd",
+      "name": "Sudd wetlands, South Sudan",
+      "search_bbox_wsen": [30.0, 6.5, 31.8, 9.0],
+      "hits": {"beta": 0, "provisional": 91, "validated": 7},
+      "best_stack": "086_A_005",
+      "best_stack_footprint_note": "Frame 5 of ascending track 86 spans about 29.2-31.9 E, 5.5-8.2 N and contains the Bahr el Jebel swamp core.",
+      "best_stack_repeats": "9 dual-pol HH+HV (DHDH) + 1 single-pol HH (SHSH), all CRID P05023, 2026-06-20 to 2026-10-18, 12-day cycle with the 2026-08-07 repeat missing (documented instrument gap).",
+      "validated_same_stack_pairs": 0,
+      "other_stacks": ["086_A_006 (northern Sudd, 9 DHDH)", "158_A_005/006 (eastern fringe, 10-11 DHDH)", "122_D_084/085", "050_D_084/085", "151_D_084"],
+      "decision": "SELECTED by the human team on 2026-11-14"
+    },
+    {
+      "id": "congo",
+      "name": "Cuvette Centrale, Congo Basin",
+      "search_bbox_wsen": [17.3, -1.5, 18.8, 0.8],
+      "hits": {"beta": 10, "provisional": 90, "validated": 4},
+      "best_stack": "173_A_002",
+      "best_stack_repeats": "About 22 DHDH PROVISIONAL records Nov 2025-Mar 2026 and Jun-Oct 2026 (CRID P05023) plus BETA (X05009) records; longest series found.",
+      "validated_same_stack_pairs": 0,
+      "decision": "Documented alternative; not selected"
+    },
+    {
+      "id": "okavango",
+      "name": "Okavango Delta, Botswana",
+      "search_bbox_wsen": [22.2, -19.9, 23.6, -18.6],
+      "hits": {"beta": 5, "provisional": 80, "validated": 6},
+      "best_stack": "172_A_168",
+      "best_stack_repeats": "9 DHDH PROVISIONAL 2026-06-26 to 2026-10-12 plus BETA records; 100_A_167/168 frames only clip the western edge of the delta.",
+      "validated_same_stack_pairs": 0,
+      "decision": "Documented alternative; not selected"
+    },
+    {
+      "id": "mississippi",
+      "name": "Mississippi River Delta, USA (earlier preference, withdrawn by team)",
+      "search_bbox_wsen": [-90.0, 28.9, -89.0, 29.6],
+      "hits": {"beta": 35, "provisional": 67, "validated": 10},
+      "notable": "VALIDATED same-stack pair exists: 156_D_073, 2026-10-23 and 2026-11-04 (CRID P05036, mode 4005, DHDH).",
+      "decision": "Withdrawn by team decision (master prompt update v2.1); recorded for transparency only"
+    }
+  ],
+  "caveat": "Counts can change as ASF ingests new products or reprocesses older ones (a 2027 reprocessing campaign is announced for pre-2026-10-21 data)."
+}

@@ -1,0 +1,331 @@
+{
+ "schema": "ulak-reference-v1",
+ "fetched_utc": "2026-11-14T08:28:21Z",
+ "access_route": "NASA GIBS WMS (public, no authentication) fetched from the team's Claude desktop built-in browser because the analysis sandboxes' network proxy blocks *.earthdata.nasa.gov. Decoding (exact RGBA palette match) ran in the browser; compact cell products were transferred as text and verified bit-for-bit with SHA-256 and with independent region cross-sums. analysis/fetch_reference.py reproduces the whole step in Python on any machine with GIBS access.",
+ "aoi_wsen": [
+  30.55,
+  7.0,
+  30.95,
+  7.4
+ ],
+ "cell_grid": {
+  "deg": 0.01,
+  "rows": 40,
+  "cols": 40,
+  "row0": "north edge 7.40 N",
+  "col0": "west edge 30.55 E"
+ },
+ "layers": {
+  "modis_igbp": {
+   "layer": "MODIS_Combined_L3_IGBP_Land_Cover_Type_Annual",
+   "product": "MCD12Q1 v061 IGBP (LC_Type1)",
+   "times": [
+    "2023-01-01",
+    "2024-01-01"
+   ],
+   "wms_px": 400,
+   "pixel_deg": 0.001,
+   "colormap": "https://gibs.earthdata.nasa.gov/colormaps/v1.3/MODIS_IGBP_Land_Cover_Type.xml",
+   "unknown_colours": 0,
+   "class_counts_400px": {
+    "2023": {
+     "1": 45,
+     "8": 132973,
+     "9": 16,
+     "10": 25990,
+     "16": 976
+    },
+    "2024": {
+     "1": 646,
+     "7": 72,
+     "8": 127954,
+     "9": 16,
+     "10": 30356,
+     "16": 956
+    }
+   },
+   "url_example": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=MODIS_Combined_L3_IGBP_Land_Cover_Type_Annual&SRS=EPSG:4326&BBOX=30.55,7.0,30.95,7.4&WIDTH=400&HEIGHT=400&FORMAT=image/png&TRANSPARENT=true&TIME=2024-01-01"
+  },
+  "dswx_s1": {
+   "layer": "OPERA_L3_Dynamic_Surface_Water_Extent-Sentinel-1",
+   "product": "OPERA L3 DSWx-S1 (Sentinel-1 C-band, 30 m native)",
+   "wms_px": 200,
+   "pixel_deg": 0.002,
+   "colormap": "https://gibs.earthdata.nasa.gov/colormaps/v1.3/OPERA_Dynamic_Surface_Water_Extent_S1.xml",
+   "classes": {
+    "0": "not water",
+    "1": "open water",
+    "3": "inundated vegetation",
+    "250": "HAND masked",
+    "251": "layover/shadow",
+    "255": "fill/transparent"
+   },
+   "times": [
+    "2026-06-05",
+    "2026-07-01",
+    "2026-07-13",
+    "2026-07-25",
+    "2026-08-06",
+    "2026-08-18",
+    "2026-08-30",
+    "2026-09-11",
+    "2026-09-23",
+    "2026-10-05",
+    "2026-10-17",
+    "2026-10-29"
+   ],
+   "unknown_colours": 0,
+   "aoi_counts": {
+    "2026-06-05": {
+     "0": 0,
+     "1": 0,
+     "3": 0,
+     "250": 0,
+     "251": 0,
+     "255": 40000
+    },
+    "2026-07-01": {
+     "0": 30206,
+     "1": 2625,
+     "3": 7169,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-07-13": {
+     "0": 30117,
+     "1": 2559,
+     "3": 7324,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-07-25": {
+     "0": 29383,
+     "1": 2959,
+     "3": 7658,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-08-06": {
+     "0": 30012,
+     "1": 2669,
+     "3": 7319,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-08-18": {
+     "0": 30075,
+     "1": 2652,
+     "3": 7273,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-08-30": {
+     "0": 31068,
+     "1": 3058,
+     "3": 5874,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-09-11": {
+     "0": 28963,
+     "1": 2745,
+     "3": 8292,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-09-23": {
+     "0": 28464,
+     "1": 2754,
+     "3": 8782,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-10-05": {
+     "0": 30801,
+     "1": 2547,
+     "3": 6652,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-10-17": {
+     "0": 29987,
+     "1": 2650,
+     "3": 7363,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    },
+    "2026-10-29": {
+     "0": 29322,
+     "1": 2755,
+     "3": 7923,
+     "250": 0,
+     "251": 0,
+     "255": 0
+    }
+   },
+   "url_template": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=OPERA_L3_Dynamic_Surface_Water_Extent-Sentinel-1&SRS=EPSG:4326&BBOX=30.55,7.0,30.95,7.4&WIDTH=200&HEIGHT=200&FORMAT=image/png&TRANSPARENT=true&TIME={time}"
+  },
+  "dswx_hls": {
+   "layer": "OPERA_L3_Dynamic_Surface_Water_Extent-HLS",
+   "product": "OPERA L3 DSWx-HLS (Landsat 8/9 + Sentinel-2 optical, 30 m native)",
+   "wms_px": 200,
+   "pixel_deg": 0.002,
+   "colormap": "https://gibs.earthdata.nasa.gov/colormaps/v1.3/OPERA_Dynamic_Surface_Water_Extent.xml",
+   "classes": {
+    "0": "not water",
+    "1": "open water",
+    "2": "partial surface water",
+    "3": "snow/ice",
+    "4": "cloud/cloud shadow",
+    "255": "no data"
+   },
+   "times": [
+    "2026-06-12",
+    "2026-06-13",
+    "2026-06-20",
+    "2026-06-30",
+    "2026-07-09",
+    "2026-07-20",
+    "2026-08-29",
+    "2026-09-08",
+    "2026-09-20",
+    "2026-09-26",
+    "2026-10-05",
+    "2026-10-20"
+   ],
+   "unknown_colours": 0,
+   "aoi_counts": {
+    "2026-06-12": {
+     "0": 22843,
+     "1": 3600,
+     "2": 13547,
+     "3": 10,
+     "4": 0,
+     "255": 0
+    },
+    "2026-06-13": {
+     "0": 0,
+     "1": 0,
+     "2": 0,
+     "3": 0,
+     "4": 0,
+     "255": 40000
+    },
+    "2026-06-20": {
+     "0": 0,
+     "1": 0,
+     "2": 0,
+     "3": 0,
+     "4": 0,
+     "255": 40000
+    },
+    "2026-06-30": {
+     "0": 24268,
+     "1": 3761,
+     "2": 10695,
+     "3": 41,
+     "4": 1235,
+     "255": 0
+    },
+    "2026-07-09": {
+     "0": 19987,
+     "1": 3935,
+     "2": 16078,
+     "3": 0,
+     "4": 0,
+     "255": 0
+    },
+    "2026-07-20": {
+     "0": 19440,
+     "1": 3244,
+     "2": 6993,
+     "3": 8,
+     "4": 318,
+     "255": 9997
+    },
+    "2026-08-29": {
+     "0": 26115,
+     "1": 3651,
+     "2": 10196,
+     "3": 10,
+     "4": 28,
+     "255": 0
+    },
+    "2026-09-08": {
+     "0": 28066,
+     "1": 3678,
+     "2": 8138,
+     "3": 8,
+     "4": 110,
+     "255": 0
+    },
+    "2026-09-20": {
+     "0": 27359,
+     "1": 3603,
+     "2": 8321,
+     "3": 10,
+     "4": 707,
+     "255": 0
+    },
+    "2026-09-26": {
+     "0": 4,
+     "1": 0,
+     "2": 4,
+     "3": 0,
+     "4": 0,
+     "255": 39992
+    },
+    "2026-10-05": {
+     "0": 23188,
+     "1": 3543,
+     "2": 13269,
+     "3": 0,
+     "4": 0,
+     "255": 0
+    },
+    "2026-10-20": {
+     "0": 16893,
+     "1": 2069,
+     "2": 5090,
+     "3": 135,
+     "4": 15813,
+     "255": 0
+    }
+   },
+   "url_template": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=OPERA_L3_Dynamic_Surface_Water_Extent-HLS&SRS=EPSG:4326&BBOX=30.55,7.0,30.95,7.4&WIDTH=200&HEIGHT=200&FORMAT=image/png&TRANSPARENT=true&TIME={time}"
+  }
+ },
+ "region_rule_ref": "analysis/reference_data.py REGION_RULE",
+ "files": {
+  "modis_regions_cells.txt": {
+   "sha256": "1545fea232b3d223f88b55cf487c0a74714fe837ff66f1c9dd2ab3a8a8a67c0b"
+  },
+  "dswx_s1_iv_cells.txt": {
+   "sha256": "235b3d83a952974a798d1bc111aa13f4ddf9e04781b76eaf86004cf62fb39fba"
+  },
+  "dswx_s1_ow_cells.txt": {
+   "sha256": "1f6e7c8160460401ab32ffa194ba843fce911594b7ef832badb845d27f734512"
+  },
+  "region_tables.json": {
+   "sha256": "01ab889952d165c13671603c827d4189c0136c3ff86b95616b122bdaf868ad5e"
+  }
+ },
+ "caveats": [
+  "GIBS layers are visualisations: class values are exact palette decodes, but geometry is nearest-neighbour resampled from native 30 m (DSWx) / 500 m (MODIS) to the WMS grid. Cell fractions at 0.01 deg are therefore approximate area fractions.",
+  "When several DSWx granules overlap on one day, GIBS composites them; the granule actually displayed per pixel is not recorded here. Granule-level provenance requires the CMR/ASF GeoTIFFs (fetch_reference.py --cmr lists them).",
+  "DSWx-S1 dates are 1 day before NISAR dates (Sentinel-1 overpass); 2026-06-05 has no coverage in the AOI, so the NISAR 2026-06-20 baseline has no DSWx-S1 counterpart; 2026-08-06 matches the missing NISAR 2026-08-07 slot; 2026-10-29 has no NISAR counterpart.",
+  "DSWx-HLS is optical: it cannot see water beneath emergent vegetation (papyrus, Typha, flooded grassland). Absence of optical water is not evidence that the surface beneath the canopy is dry.",
+  "DSWx-S1 'inundated vegetation' is itself a C-band backscatter-derived classification with its own errors; it is an independent sensor, not ground truth.",
+  "MODIS IGBP at 500 m is coarse; the region labels are used only to stratify, never as truth for NISAR pixel classes."
+ ]
+}

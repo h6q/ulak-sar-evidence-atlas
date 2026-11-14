@@ -1,0 +1,250 @@
+{
+ "grid": {
+  "epsg": 32636,
+  "native_spacing_m": [
+   20.0,
+   -20.0
+  ],
+  "shape": [
+   2224,
+   2220
+  ]
+ },
+ "invalid_native_samples": {
+  "2026-06-20 HHHH": 0,
+  "2026-06-20 HVHV": 0,
+  "2026-10-18 HHHH": 0,
+  "2026-10-18 HVHV": 0
+ },
+ "area": {
+  "analysis_pixel_m": 100.0,
+  "analysis_pixel_area_m2": 10000.0,
+  "valid_area_km2": 1971.36,
+  "edge_rows_cols_dropped_by_multilook": [
+   4,
+   0
+  ],
+  "utm_point_scale_factor_aoi_centre": 1.0003586470850068,
+  "ground_area_correction_factor": 0.9992830915287361
+ },
+ "recomputed": {
+  "median_dhh_db": 1.0836739959045234,
+  "median_dhv_db": 0.49985853780359957,
+  "robust_sigma_dhh_db": 1.639493651422107,
+  "robust_sigma_dhv_db": 1.5298780693749545,
+  "T_HH": 4.918480954266321,
+  "T_HV": 4.589634208124863
+ },
+ "candidates": {
+  "n": 12320,
+  "fraction": 0.06249492735979222,
+  "area_km2_of_100m_cells": 123.2,
+  "by_class": {
+   "hh_up_double_bounce": 1012,
+   "both_down_specular": 672,
+   "hv_up_volume": 7495,
+   "other_change": 3141
+  }
+ },
+ "sensitivity_median_centred": {
+  "by_class": {
+   "hh_up_double_bounce": 135,
+   "both_down_specular": 1158,
+   "hv_up_volume": 5980,
+   "other_change": 1371
+  },
+  "n": 8644,
+  "fraction": 0.043847901956010064
+ },
+ "signed": {
+  "hh_up": 4761,
+  "hh_down": 778,
+  "hv_up": 8743,
+  "hv_down": 1514,
+  "hh_up_centred": 709,
+  "hh_down_centred": 1419
+ },
+ "shift": {
+  "fraction_dhh_positive": 0.7794517490463436,
+  "fraction_dhv_positive": 0.6409027270513757,
+  "tile_median_dhh_db": [
+   2.38,
+   0.37,
+   2.336,
+   1.025,
+   2.474,
+   0.404,
+   1.31,
+   1.153,
+   0.518,
+   1.892,
+   0.437,
+   2.166,
+   0.387,
+   1.322,
+   0.784,
+   0.414
+  ],
+  "tile_range_dhh_db": [
+   0.36978724934241125,
+   2.474207106653516
+  ],
+  "strata": [
+   {
+    "before_hh_db": [
+     null,
+     -10.46
+    ],
+    "median_dhh_db": 1.588180358917473,
+    "median_dhv_db": 0.6692620920290917,
+    "n": 49284
+   },
+   {
+    "before_hh_db": [
+     -10.46,
+     -7.82
+    ],
+    "median_dhh_db": 1.4156040294418908,
+    "median_dhv_db": 0.9279609452563573,
+    "n": 49284
+   },
+   {
+    "before_hh_db": [
+     -7.82,
+     -6.13
+    ],
+    "median_dhh_db": 0.8030064755025483,
+    "median_dhv_db": 0.294666574626409,
+    "n": 49284
+   },
+   {
+    "before_hh_db": [
+     -6.13,
+     null
+    ],
+    "median_dhh_db": 0.6212452820305354,
+    "median_dhv_db": 0.14657241420462874,
+    "n": 49284
+   }
+  ]
+ },
+ "grid_bounds_lonlat": [
+  30.547901662884467,
+  6.998784802251765,
+  30.951732453507123,
+  7.402084468333264
+ ],
+ "registration": {
+  "evidenced": true,
+  "assumed": "center",
+  "max_absolute_position_error_m": 10.0,
+  "effect_on_dB_differences": "none: both dates share the identical grid"
+ },
+ "checks": [
+  {
+   "check": "integrity 2026-06-20 HHHH",
+   "pass": true,
+   "detail": "GeoTIFF pixels == sidecar sha256 == report sha256"
+  },
+  {
+   "check": "tags 2026-06-20 HHHH",
+   "pass": true,
+   "detail": "granule + polarization tags; nodata=nan"
+  },
+  {
+   "check": "integrity 2026-06-20 HVHV",
+   "pass": true,
+   "detail": "GeoTIFF pixels == sidecar sha256 == report sha256"
+  },
+  {
+   "check": "tags 2026-06-20 HVHV",
+   "pass": true,
+   "detail": "granule + polarization tags; nodata=nan"
+  },
+  {
+   "check": "integrity 2026-10-18 HHHH",
+   "pass": true,
+   "detail": "GeoTIFF pixels == sidecar sha256 == report sha256"
+  },
+  {
+   "check": "tags 2026-10-18 HHHH",
+   "pass": true,
+   "detail": "granule + polarization tags; nodata=nan"
+  },
+  {
+   "check": "integrity 2026-10-18 HVHV",
+   "pass": true,
+   "detail": "GeoTIFF pixels == sidecar sha256 == report sha256"
+  },
+  {
+   "check": "tags 2026-10-18 HVHV",
+   "pass": true,
+   "detail": "granule + polarization tags; nodata=nan"
+  },
+  {
+   "check": "identical CRS/transform/shape across all 4 rasters",
+   "pass": true,
+   "detail": "EPSG:32636, transform (20.0, 0.0, 229320.0, 0.0, -20.0, 818720.0), shape (2224, 2220)"
+  },
+  {
+   "check": "valid analysis pixels",
+   "pass": true,
+   "detail": "recomputed 197136 vs report 197136"
+  },
+  {
+   "check": "median dHH",
+   "pass": true,
+   "detail": "recomputed 1.083674 dB vs report 1.083674 dB"
+  },
+  {
+   "check": "median dHV",
+   "pass": true,
+   "detail": "recomputed 0.499859 dB vs report 0.499859 dB"
+  },
+  {
+   "check": "T_HH",
+   "pass": true,
+   "detail": "recomputed 4.918481 dB vs report 4.918481 dB"
+  },
+  {
+   "check": "T_HV",
+   "pass": true,
+   "detail": "recomputed 4.589634 dB vs report 4.589634 dB"
+  },
+  {
+   "check": "class counts (independent rule implementation)",
+   "pass": true,
+   "detail": "recomputed {'hh_up_double_bounce': 1012, 'both_down_specular': 672, 'hv_up_volume': 7495, 'other_change': 3141} vs report {'hh_up_double_bounce': 1012, 'both_down_specular': 672, 'hv_up_volume': 7495, 'other_change': 3141}"
+  },
+  {
+   "check": "overlay before_hh georeference",
+   "pass": true,
+   "detail": "bounds error 58.8 m (< one 100 m display pixel); file sudd_before_hh.png 232015 bytes"
+  },
+  {
+   "check": "overlay after_hh georeference",
+   "pass": true,
+   "detail": "bounds error 58.8 m (< one 100 m display pixel); file sudd_after_hh.png 231254 bytes"
+  },
+  {
+   "check": "overlay delta_hh georeference",
+   "pass": true,
+   "detail": "bounds error 58.8 m (< one 100 m display pixel); file sudd_delta_hh.png 477112 bytes"
+  },
+  {
+   "check": "overlay hypotheses georeference",
+   "pass": true,
+   "detail": "bounds error 58.8 m (< one 100 m display pixel); file sudd_hypotheses.png 15137 bytes"
+  },
+  {
+   "check": "all candidate cells inside the analysed grid ([lon, lat] order)",
+   "pass": true,
+   "detail": "182 cells; AOI [30.55, 7.0, 30.95, 7.4]"
+  },
+  {
+   "check": "cell spot-check (first cell median dHH)",
+   "pass": true,
+   "detail": "cell-0000: recomputed 5.347 vs report 5.347 dB"
+  }
+ ]
+}

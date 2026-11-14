@@ -1,0 +1,147 @@
+{
+  "schema": "ulak-manifest-v1",
+  "updated_utc": "2026-11-14T10:37:49Z",
+  "project": "ULAK - SAR Evidence Atlas: Beneath the Canopy (NASA Space Apps Challenge 2026, Dancing with the SARs)",
+  "status": {
+    "catalog_verification": "DONE - 10/10 granules match live NASA CMR (2026-11-14).",
+    "pixel_retrieval": "DONE for all 10 acquisitions - AOI windows cached with SHA-256 in data/derived/cache.",
+    "measured_results": "DONE - web/data/sudd_report.json (MEASURED, v0.3.2, regenerated from the verified cache); independent audit 21/21 (docs/AUDIT_REPORT.md); summary docs/RESULTS.md.",
+    "time_series": "DONE - 10 acquisitions ingested; primary inference uses 9 QC-pass dates (2026-09-24 HH-only; 2026-10-06 excluded by QC). Results: data/derived/timeseries/timeseries_results.json and web/data/timeseries.json."
+  },
+  "study_area": {
+    "name": "Central Sudd wetlands along the Bahr el Jebel, South Sudan",
+    "aoi_bbox_wsen": [
+      30.55,
+      7.0,
+      30.95,
+      7.4
+    ],
+    "aoi_selection_note": "Team-approved study region (2026-11-14). AOI chosen to lie well inside frame 086_A_005; verify visually on the basemap and adjust with --aoi if needed."
+  },
+  "collection": {
+    "short_name": "NISAR_L2_GCOV_PROVISIONAL_V1",
+    "version": "1",
+    "cmr_concept_id": "C2854338529-ASF",
+    "maturity": "PROVISIONAL",
+    "crid": "P05023",
+    "doi": "10.5067/NIL2GCOV-P1 (from the collection metadata record; https://doi.org/10.5067/NIL2GCOV-P1)",
+    "distributor": "NASA Alaska Satellite Facility DAAC",
+    "landing": "https://search.asf.alaska.edu/#/?dataset=NISAR",
+    "docs": "https://nisar-docs.asf.alaska.edu/gcov/"
+  },
+  "primary_pair": {
+    "before": {
+      "granule_ur": "NISAR_L2_PR_GCOV_023_086_A_005_2005_DHDH_A_20260620T033436_20260620T033510_P05023_N_F_J_001",
+      "cmr_concept_id": "G4244913851-ASF",
+      "acquisition_begin_utc": "2026-06-20T03:34:36.000000Z",
+      "acquisition_end_utc": "2026-06-20T03:35:10.999342Z",
+      "orbit_number": 4682,
+      "polarizations_frequency_a": [
+        "HH",
+        "HV"
+      ],
+      "orbit_fidelity_token": "N",
+      "h5_https": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_023_086_A_005_2005_DHDH_A_20260620T033436_20260620T033510_P05023_N_F_J_001/NISAR_L2_PR_GCOV_023_086_A_005_2005_DHDH_A_20260620T033436_20260620T033510_P05023_N_F_J_001.h5",
+      "h5_bytes": 1824522240,
+      "h5_md5_from_cmr": "80897cac28830bfd6993858f4f3ada90",
+      "cmr_record": "https://cmr.earthdata.nasa.gov/search/concepts/G4244913851-ASF.umm_json"
+    },
+    "after": {
+      "granule_ur": "NISAR_L2_PR_GCOV_033_086_A_005_2005_DHDH_A_20261018T033432_20261018T033507_P05023_N_F_J_001",
+      "cmr_concept_id": "G4379033365-ASF",
+      "acquisition_begin_utc": "2026-10-18T03:34:32.000000Z",
+      "acquisition_end_utc": "2026-10-18T03:35:07.999342Z",
+      "orbit_number": 6412,
+      "polarizations_frequency_a": [
+        "HH",
+        "HV"
+      ],
+      "orbit_fidelity_token": "N",
+      "h5_https": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_086_A_005_2005_DHDH_A_20261018T033432_20261018T033507_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_086_A_005_2005_DHDH_A_20261018T033432_20261018T033507_P05023_N_F_J_001.h5",
+      "h5_bytes": 1866465280,
+      "h5_md5_from_cmr": "e066d3c43e733a61225d07c084c2e1dc",
+      "cmr_record": "https://cmr.earthdata.nasa.gov/search/concepts/G4379033365-ASF.umm_json"
+    },
+    "temporal_baseline_days": 120,
+    "rationale": "Same stack (track 86 ascending, frame 5, mode 2005), same CRID P05023, same product version 1.0.11 and SAS ISCE3 0.25.16, both dual-pol HH+HV, both near-real-time orbit (N) and full frame; spans the 2026 wet-season rise."
+  },
+  "time_series": [
+    "2026-06-20",
+    "2026-07-02",
+    "2026-07-14",
+    "2026-07-26",
+    "2026-08-19",
+    "2026-08-31",
+    "2026-09-12",
+    "2026-09-24",
+    "2026-10-06",
+    "2026-10-18"
+  ],
+  "excluded_or_flagged": [
+    {
+      "date": "2026-07-14",
+      "reason": "Filename orbit-fidelity token F (Forecast); usable in time series with a flag, not as a primary pair member."
+    },
+    {
+      "date": "2026-09-24",
+      "reason": "Single-pol HH (SHSH); HH-only in time series."
+    },
+    {
+      "date": "2026-08-07",
+      "reason": "Not acquired: documented permanent instrument data gap 2026-07-27T22:03:25Z to 2026-08-10T00:55:27Z."
+    },
+    {
+      "date": "2026-10-06",
+      "reason": "Acquired and cached, but excluded from primary temporal inference because the acquisition fails QC."
+    }
+  ],
+  "scientific_variables": {
+    "dataset_paths_expected": [
+      "/science/LSAR/GCOV/grids/frequencyA/HHHH",
+      "/science/LSAR/GCOV/grids/frequencyA/HVHV"
+    ],
+    "verification": "Paths are documented by ASF; the reader verifies their presence in each real file at run time and fails loudly otherwise. Units and fill attributes are recorded in the report.",
+    "quantity": "gamma0 backscatter, radiometrically terrain corrected, linear power; dB = 10*log10"
+  },
+  "ancillary": {
+    "nasa_power": "data/ancillary/nasa_power_sudd_2026.json (retrieved 2026-11-14, public API, no login)",
+    "reference_context": "data/reference/reference_provenance.json (MODIS IGBP and OPERA DSWx-S1/HLS NASA GIBS renderings; exact palette decoded; contextual, not ground truth)"
+  },
+  "commands": {
+    "setup": "powershell -ExecutionPolicy Bypass -File scripts\\ulak_setup.ps1",
+    "verify_catalog": ".\\.venv\\Scripts\\python.exe analysis\\nisar_catalog.py",
+    "run_real_data": "powershell -ExecutionPolicy Bypass -File scripts\\ulak_run_sudd.ps1",
+    "run_pair_only": "powershell -ExecutionPolicy Bypass -File scripts\\ulak_run_sudd.ps1 -PairOnly",
+    "fallback_full_download": "powershell -ExecutionPolicy Bypass -File scripts\\ulak_run_sudd.ps1 -PairOnly -FullDownload",
+    "serve_web": "py -m http.server 8000 --directory web"
+  },
+  "outputs_after_run": {
+    "report": "web/data/sudd_report.json (schema ulak-change-v2)",
+    "overlays": "web/data/sudd_*.png (display-only EPSG:4326)",
+    "geotiffs": "data/derived/*_gamma0_linear.tif + .json provenance sidecars (sha256 of extracted arrays)",
+    "log": "data/derived/run_*.log",
+    "timeseries_results": "data/derived/timeseries/timeseries_results.json",
+    "timeseries_web": "web/data/timeseries.json + web/data/ts/*.png",
+    "timeseries_figures": "data/derived/timeseries/figures/*"
+  },
+  "licenses_attribution": {
+    "nisar": "NASA-ISRO NISAR data distributed by NASA ASF DAAC; NASA Earth science data are openly available - credit NASA/JPL-Caltech, ISRO and ASF DAAC. No endorsement implied.",
+    "nasa_power": "NASA Langley Research Center POWER Project",
+    "gibs": "NASA GIBS / Worldview",
+    "osm": "(c) OpenStreetMap contributors, ODbL",
+    "leaflet": "Leaflet 1.9.4, BSD-2-Clause (vendored in web/vendor/leaflet)"
+  },
+  "headline_numbers": {
+    "valid_pixels_100m": 197136,
+    "valid_area_km2": 1971.36,
+    "median_dhh_db": 1.0837,
+    "median_dhv_db": 0.4999,
+    "candidates_as_reported": 12320,
+    "candidates_shift_removed": 8644,
+    "hv_up_as_reported": 7495,
+    "hv_up_shift_removed": 5980,
+    "hh_up_as_reported": 1012,
+    "hh_up_shift_removed": 135,
+    "source": "web/data/sudd_report.json"
+  }
+}

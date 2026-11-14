@@ -1,0 +1,8 @@
+{
+  "note": "METADATA TEMPLATE ONLY. NO ACTUAL NISAR ACQUISITIONS ARE INCLUDED OR CLAIMED.",
+  "source": "NASA–ISRO NISAR Level-2 GCOV, distributed by NASA ASF DAAC",
+  "collection_names": ["NISAR_L2_GCOV_PROVISIONAL_V1", "NISAR_L2_GCOV_V1"],
+  "before": {"granule_id": null, "observation_utc": null, "polarization": null, "maturity": null, "crid": null, "orbit_direction": null},
+  "after": {"granule_id": null, "observation_utc": null, "polarization": null, "maturity": null, "crid": null, "orbit_direction": null},
+  "comparison_checks": ["matching polarization", "matched grids", "matched orbit geometry if available", "same maturity or processing version", "adequate valid-mask coverage", "land-cover / rain confounds evaluated", "independent validation if making physical claims"]
+}
