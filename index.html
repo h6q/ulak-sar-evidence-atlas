@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="ULAK SAR Evidence Atlas - Beneath the Canopy: an evidence-first exploration of NASA-ISRO NISAR L-band radar observations of the Sudd wetlands."/>
+  <title>ULAK · SAR Evidence Atlas · Beneath the Canopy</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to map and controls</a>
+<header class="header">
+  <div class="brand"><span class="brand-mark" aria-hidden="true">◉</span><span>ULAK <small>/ SAR EVIDENCE ATLAS</small></span></div>
+  <div class="header-right"><span class="dot" aria-hidden="true"></span><span>NASA–ISRO NISAR · L2 GCOV · L-band</span><a class="outline small" href="https://worldview.earthdata.nasa.gov/?l=Coastlines_15m,NISAR_L2_Geocoded_Polarimetric_Covariance&v=28.5,5.2,33.5,8.6" target="_blank" rel="noopener">NASA Worldview ↗</a></div>
+</header>
+<main>
+ <section class="hero">
+   <p class="eyebrow">2026 NASA SPACE APPS · DANCING WITH THE SARS · BENEATH THE CANOPY</p>
+   <h1>See change. <em>Question the evidence.</em></h1>
+   <p class="intro">Can L-band radar reveal water hiding under the papyrus and reeds of the <strong>Sudd</strong>, one of Africa's largest wetlands, where clouds and canopy often defeat optical satellites? Explore real NISAR acquisitions, compare dates, and inspect every change candidate together with <strong>what it can and cannot prove</strong>.</p>
+   <div id="tierBanner" class="tier tier-CATALOG" role="status" aria-live="polite"><b id="tierLabel">Catalog-verified</b><span id="tierText">Loading observation catalog…</span></div>
+ </section>
+ <section class="workspace" id="workspace">
+  <aside class="controls panel" aria-label="Observation controls">
+    <div class="section-head"><span class="step">01</span><h2>Observation</h2></div>
+    <label for="region">Study area</label>
+    <select id="region">
+      <option value="sudd">Central Sudd, South Sudan · NISAR stack 086_A_005</option>
+      <option value="frame">Whole frame 086_A_005 footprint</option>
+      <option value="custom">Custom position (visual only)</option>
+    </select>
+    <div class="two"><div><label for="lat">Latitude</label><input id="lat" type="number" step=".0001" value="7.2" inputmode="decimal"></div><div><label for="lon">Longitude</label><input id="lon" type="number" step=".0001" value="30.75" inputmode="decimal"></div></div>
+    <button id="go" class="outline wide">Locate position ↗</button>
+    <div class="rule"></div>
+    <label for="before">Observation A · before</label>
+    <select id="before" aria-describedby="obsNote"></select>
+    <label for="after">Observation B · after</label>
+    <select id="after" aria-describedby="obsNote"></select>
+    <button id="refresh" class="primary">Load NISAR imagery</button>
+    <p id="obsNote" class="muted note">Only <b>real acquisitions from the NASA CMR catalog</b> are listed. The map shows the NASA GIBS <i>daily rendered mosaic</i> for that UTC date, a visual layer and not a calibrated measurement.</p>
+    <div class="rule"></div>
+    <div class="section-head"><span class="step">02</span><h2>Comparison</h2></div>
+    <div class="metric"><label for="swipe" class="inline">Before / After divider</label><b id="swipeValue">50%</b></div>
+    <input id="swipe" type="range" min="0" max="100" value="50" aria-valuetext="50 percent before"/>
+    <fieldset class="layers"><legend>Layer on the map</legend>
+      <label><input type="radio" name="layer" value="gibs" checked> NASA GIBS mosaic <span class="pill VISUAL">visual</span></label>
+      <label><input type="radio" name="layer" value="hh"> Measured HH γ⁰ (dB) <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="delta"> Measured ΔHH (dB) <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="hyp"> Change hypotheses <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="ts_hh"> Timeline HH <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="ts_hv"> Timeline HV <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="ts_delta_hh"> First→last ΔHH <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="ts_delta_hv"> First→last ΔHV <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="ts_trend_hh"> HH temporal trend <span class="pill MEASURED">measured</span></label>
+      <label><input type="radio" name="layer" value="ts_persistence_hh"> HH persistence <span class="pill MEASURED">measured</span></label>
+    </fieldset>
+    <div id="temporalControls" class="temporal-controls">
+      <label for="tsDate">QC-screened timeline date</label><select id="tsDate"></select>
+      <div class="three"><button id="tsPrev" class="outline" aria-label="Previous observation">←</button><button id="tsPlay" class="outline">Play</button><button id="tsNext" class="outline" aria-label="Next observation">→</button></div>
+    </div>
+    <label class="check"><input type="checkbox" id="showCells" checked> Clickable candidate cells</label>
+    <div class="two"><button id="toggleMap" class="outline">Hide radar layer</button><button id="fit" class="outline">Reset view</button></div>
+    <p id="mapStatus" class="status" role="status" aria-live="polite">Preparing map…</p>
+  </aside>
+  <div class="map-panel panel"><div class="map-toolbar"><span>RADAR OBSERVATION WINDOW</span><span id="coords">7.2000° N · 30.7500° E</span></div>
+   <div id="map" role="region" aria-label="Map comparing two radar observations"><div id="divider" aria-hidden="true"><div class="divider-pill">↔</div></div><span class="map-badge left" id="badgeA">A / BEFORE</span><span class="map-badge right" id="badgeB">B / AFTER</span></div>
+   <div id="legend" class="legend" aria-live="polite"></div>
+   <div class="map-footer"><span>Base map © OpenStreetMap contributors</span><span>Radar: NASA–ISRO NISAR GCOV via NASA ASF DAAC · mosaics NASA GIBS</span></div>
+  </div>
+ </section>
+ <section class="lower">
+  <div class="panel details" id="passportPanel"><div class="section-head"><span class="step">03</span><h2>Evidence passport</h2></div>
+   <p id="passportScope" class="muted">Scope: the selected pair of observations. Click a candidate cell on the map to see its own passport.</p>
+   <div id="passport"></div>
+   <div class="two"><a class="outline action" id="catalogLink" href="https://search.asf.alaska.edu/#/?dataset=NISAR" target="_blank" rel="noopener">Open in ASF Vertex ↗</a><a class="outline action" href="https://nisar-docs.asf.alaska.edu/gcov/" target="_blank" rel="noopener">GCOV science guide ↗</a></div>
+  </div>
+  <div class="panel details"><div class="section-head"><span class="step">04</span><h2>Quantitative evidence</h2></div>
+    <div class="stats"><div><small>Valid samples</small><strong id="valid">—</strong></div><div><small>Median ΔHH</small><strong id="dhh">—</strong></div><div><small>Median ΔHV</small><strong id="dhv">—</strong></div></div>
+    <p id="evidenceStatus" class="status" role="status" aria-live="polite">Looking for a measured report…</p>
+    <figure class="chart" aria-labelledby="histTitle"><figcaption id="histTitle">Distribution of ΔHH and ΔHV (dB)</figcaption><div id="hist"></div></figure>
+    <div id="robust"></div>
+    <label for="evidence">Import a ULAK report (change_report.json or sudd_report.json)</label><input id="evidence" type="file" accept=".json,application/json"/>
+    <div class="two"><button class="outline" id="clearEvidence">Remove results</button><button class="outline" id="export">Export study report (English)</button></div>
+    <p class="muted note">Change hypotheses are screening criteria, not detections. Soil moisture, rain on the canopy, wind, burning, geometry and calibration can cause similar changes.</p>
+  </div>
+ </section>
+ <section class="panel details timeline">
+   <div class="section-head"><span class="step">05</span><h2>How the wet season unfolded: radar and rain</h2></div>
+   <p class="muted">QC-screened NISAR acquisitions of frame 086_A_005. The 7 Aug repeat is absent because of the documented instrument gap; 24 Sep has HH only; 6 Oct is retained in the provenance record but excluded from the primary analysis after a spatial-pattern QC failure. Rainfall and cloud cover are context, <b>not validation</b>.</p>
+   <div class="timeline-tools"><label for="tsRegion">Comparison region</label><select id="tsRegion"><option value="aoi">Whole AOI</option><option value="corridor">Wetland corridor</option><option value="west_margin">Western floodplain</option><option value="east_margin">Eastern floodplain</option></select><a id="downloadTs" class="outline action" href="data/timeseries.json" download>Download reproducible temporal results</a></div>
+   <figure class="chart" aria-labelledby="tsTitle"><figcaption id="tsTitle">Measured HH, HV and HV−HH temporal signatures (dB)</figcaption><div id="series"></div></figure>
+   <div class="temporal-grid"><div><h3>Clicked 0.01° cell temporal signature</h3><p class="muted note">Click inside the AOI on the map. Values are linear-power cell means converted to dB; no interpolation is used.</p><div id="cellSeries"></div></div><div><h3>Temporal Evidence Passport</h3><div id="temporalPassport" class="passport-stack"><p class="muted">No cell selected.</p></div></div></div>
+   <div id="temporalFinding" class="finding"></div>
+   <figure class="chart" aria-labelledby="rainTitle"><figcaption id="rainTitle">Daily precipitation (mm/day), NASA POWER at 30.75° E, 7.25° N. Ticks mark NISAR acquisitions.</figcaption><div id="rain"></div></figure>
+   <p id="cloudNote" class="muted note"></p>
+   <details><summary>Table view of acquisitions</summary><div id="obsTable"></div></details>
+ </section>
+ <footer><span>ULAK · NASA SPACE APPS 2026 · AI-ASSISTED, HUMAN-REVIEWED</span><span>No NASA or ISRO endorsement implied. Data: NASA CMR, ASF DAAC, NASA GIBS, NASA POWER.</span></footer>
+</main>
+<div id="tip" class="tip" role="tooltip" hidden></div>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="lib.js"></script>
+<script src="app.js"></script>
+</body></html>
