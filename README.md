@@ -3,139 +3,120 @@
 **NASA Space Apps Challenge 2026 · Challenge: Dancing with the SARs**
 **Team ULAK:** Yiğitcan Ufuk Demir and Batuhan Türkyılmaz
 
-An evidence-first atlas of what the NASA-ISRO NISAR L-band radar measured over the Sudd wetlands (South Sudan) during the 2026 wet season, and how far each measurement can be trusted.
+An evidence-first atlas of NASA-ISRO NISAR L-band radar over the Sudd wetlands of South Sudan. It shows what the radar measured during the 2026 wet season and how far each measurement can be trusted.
 
-* **Live app:** https://h6q.github.io/ulak-sar-evidence-atlas/
-* **Seven-slide demo:** https://h6q.github.io/ulak-sar-evidence-atlas/demo/ULAK_demo_7_slides_FINAL.pdf
+* **Live web app:** https://h6q.github.io/ulak-sar-evidence-atlas/
+* **Seven-slide demo (PDF):** https://h6q.github.io/ulak-sar-evidence-atlas/demo/ULAK_demo_7_slides_FINAL.pdf
 * **Scientific source code, tests and documentation:** [`source/`](source/)
-
-> ULAK reports measured radar backscatter and its uncertainty. It is a screening and learning tool. It is **not** a flood-detection or flood-warning system, and it makes no flood-extent or accuracy claim.
 
 ## Research question
 
-Can a multi-temporal NISAR L-band HH/HV time series reveal spatially coherent seasonal changes in the Sudd wetlands, and can those changes be distinguished from radiometric uncertainty, vegetation effects and possible inundation?
+Can a multi-temporal NISAR L-band HH/HV time series reveal spatially coherent seasonal change in the Sudd, and can that change be told apart from radiometric uncertainty, vegetation effects and possible inundation?
 
-## Data
+We did not set out to prove flooding. Every result is reported with its uncertainty and with the evidence against it.
 
-| Dataset | Identifier | Role |
+## NASA data and identifiers
+
+| Data | Identifier | Role |
 |---|---|---|
-| NISAR L2 GCOV PROVISIONAL V1 (ASF DAAC) | Collection `C2854338529-ASF`, DOI [10.5067/NIL2GCOV-P1](https://doi.org/10.5067/NIL2GCOV-P1), CRID P05023 | Measurements (gamma0 HH and HV, frequency A, 20 m) |
-| OPERA DSWx-S1 V1 (PO.DAAC) | DOI [10.5067/OPDSWS1-L3V1](https://doi.org/10.5067/OPDSWS1-L3V1) | Independent-sensor context (Sentinel-1 C-band) |
-| OPERA DSWx-HLS V1 (PO.DAAC) | DOI [10.5067/OPDSW-PL3V1](https://doi.org/10.5067/OPDSW-PL3V1) | Optical context, cloud-masked |
-| MODIS MCD12Q1 v061 IGBP (LP DAAC) | DOI [10.5067/MODIS/MCD12Q1.061](https://doi.org/10.5067/MODIS/MCD12Q1.061) | Fixed analysis regions |
+| NISAR L2 GCOV PROVISIONAL V1 (ASF DAAC) | Collection `C2854338529-ASF`, DOI [10.5067/NIL2GCOV-P1](https://doi.org/10.5067/NIL2GCOV-P1) | The measurement: gamma0 HH and HV, frequency A |
+| NISAR stack | `086_A_005` (track 86 ascending, frame 5), release CRID `P05023`, 10 granules, 2026-06-20 to 2026-10-18 | Listed with MD5 and footprints in [`source/data/catalog/sudd_086_A_005_cmr_snapshot.json`](source/data/catalog/sudd_086_A_005_cmr_snapshot.json) |
+| OPERA DSWx-S1 V1 (PO.DAAC) | DOI [10.5067/OPDSWS1-L3V1](https://doi.org/10.5067/OPDSWS1-L3V1) | Independent radar-based water classes (via NASA GIBS) |
+| OPERA DSWx-HLS V1 (PO.DAAC) | DOI [10.5067/OPDSW-PL3V1](https://doi.org/10.5067/OPDSW-PL3V1) | Cloud-masked optical water context (via NASA GIBS) |
+| MODIS Land Cover MCD12Q1 v061 (LP DAAC) | DOI [10.5067/MODIS/MCD12Q1.061](https://doi.org/10.5067/MODIS/MCD12Q1.061) | Fixes the analysis regions in advance (via NASA GIBS) |
 | NASA POWER Daily API | point 30.75° E, 7.25° N | Rain and cloud context |
+| NASA CMR, NASA GIBS | public APIs | Catalog verification, reference renderings |
 
-* NISAR stack **086_A_005**: track 86 ascending, frame 5; 10 acquisitions from 2026-06-20 to 2026-10-18. Granule IDs, MD5 checksums and footprints are in [`source/data/catalog/sudd_086_A_005_cmr_snapshot.json`](source/data/catalog/sudd_086_A_005_cmr_snapshot.json).
-* Study window (W, S, E, N): 30.55, 7.00, 30.95, 7.40.
-* The OPERA and MODIS layers were read as NASA GIBS WMS renderings and decoded exactly from their published colour palettes. Request URLs and checksums: [`source/data/reference/reference_provenance.json`](source/data/reference/reference_provenance.json).
-
-No satellite rasters are stored in this repository. The pipeline reads them from NASA with your own Earthdata Login.
+Study area: 30.55–30.95° E, 7.00–7.40° N. Exact request URLs and checksums of the reference layers are in [`source/data/reference/reference_provenance.json`](source/data/reference/reference_provenance.json).
 
 ## Main verified findings
 
-Nine of the ten acquisitions pass quality control (6 October is excluded by a pattern-based rule that never looks at change magnitude; 24 September has HH only). Common support: 195,538 cells of 100 m (1,955 km²). Change is first to last date, 20 June → 18 October 2026. Intervals are 95% spatial block-bootstrap confidence intervals.
+Nine of the ten acquisitions pass quality control (24 September has HH only; 6 October is excluded by a pattern-based rule). The common support is 195,538 cells of 100 m (1,955 km²). Changes are from 20 June to 18 October 2026; the group intervals below are 95% intervals from resampling individual 0.01° analysis cells; regional (common-mode-removed) comparisons use a spatial block bootstrap.
 
-| Group, fixed by OPERA DSWx-S1 class on all 8 matched dates | Cells (0.01°) | HH change | HV change |
+| Cells grouped by OPERA DSWx-S1 class fractions sampled from NASA GIBS renderings (criterion met on all 8 matched dates) | Cells | HH change | HV change |
 |---|---:|---:|---:|
 | Inundated vegetation | 155 | **+2.10 dB** [1.99, 2.37] | +1.24 dB [1.08, 1.62] |
 | Open water | 48 | +0.65 dB [0.21, 0.88] | −0.13 dB [−0.62, 0.31] |
 | Not water | 259 | +0.44 dB [0.38, 0.50] | +0.18 dB [0.04, 0.26] |
 
-* Among savanna cells, HH brightening peaks 10–14 km west (+2.77 dB) and 14–18 km east (+2.98 dB) of the permanent-wetland corridor centreline and is about zero at the centre.
-* Relative to the scene-wide change, the corridor became darker (HH −0.91 dB, HV −1.10 dB) and the east margin brighter (HH +0.74 dB, HV +0.89 dB).
-* Strict persistent change (more than 3 dB in both the raw and the normalised series) covers only 0.108% (HH) and 0.099% (HV) of the area.
-* An independent script, [`source/analysis/verify_findings.py`](source/analysis/verify_findings.py), recomputes the group results from the raw cache without importing the analysis modules and agrees within 0.02 dB.
+* Among savanna cells, HH brightening peaks 10–14 km west (+2.77 dB) and 14–18 km east (+2.98 dB) of the permanent-wetland corridor and is about zero at its centre.
+* Relative to the scene-wide change, the corridor darkened (HH −0.91 dB, HV −1.10 dB) and the east margin brightened (HH +0.74 dB, HV +0.89 dB).
+* Strict persistence (more than 3 dB in both raw and normalised series) covers only 0.108% (HH) and 0.099% (HV) of the area. Most large changes are episodic.
+* An independent script, [`source/analysis/verify_findings.py`](source/analysis/verify_findings.py), reproduces the group results within 0.02 dB. The contrast also survives matching cells on their 20 June HH level.
 
-Full results: [`source/docs/TIMESERIES_FINDINGS.md`](source/docs/TIMESERIES_FINDINGS.md), [`source/docs/RESULTS.md`](source/docs/RESULTS.md), machine-readable [`source/docs/results/timeseries_results.json`](source/docs/results/timeseries_results.json), figures in [`source/docs/figures/`](source/docs/figures/).
+Full account: [`source/docs/TIMESERIES_FINDINGS.md`](source/docs/TIMESERIES_FINDINGS.md) and [`source/docs/RESULTS.md`](source/docs/RESULTS.md).
 
 ## Scientific limitations
 
-* **No ground truth.** No river-gauge or field data were available. OPERA DSWx-S1 is itself a radar-derived classification (it also uses a land-cover mask), so agreement between NISAR and DSWx-S1 is an association between two radar products, not validated flooding.
-* **Water and vegetation are not separated.** HV rose together with HH in the inundated-vegetation group; vegetation growth or a rain-wet canopy can produce the same signal.
-* **Spatial clustering.** 125 of the 155 inundated-vegetation cells lie in one western belt; the eastern brightening peak is not mapped as inundated by DSWx-S1.
-* **Provisional products.** The NISAR data are PROVISIONAL (CRID P05023); residual calibration effects cannot be excluded. The cause of the 6 October anomaly is not known.
-* **Baseline gap.** The 20 June baseline has no matching DSWx-S1 date.
-* **Rendered reference layers.** GIBS renderings are resampled visualisations; class areas at 0.01° are approximate.
-* One study area and one season. Results should not be generalised.
+* **No flooding is claimed.** OPERA DSWx-S1 is itself a Sentinel-1 radar classification that also uses a land-cover mask. It is not field truth. Agreement between two radar products is an association, not validation.
+* HV rose together with HH, so vegetation growth or a rain-wet canopy cannot be separated from water beneath vegetation.
+* 125 of the 155 inundated-vegetation cells form one western belt. The eastern brightening peak is not mapped as inundated by DSWx-S1.
+* The NISAR products are PROVISIONAL. The 20 June baseline has no matching DSWx-S1 date. The cause of the 6 October anomaly is not known.
+* DSWx and MODIS layers were read as NASA GIBS renderings (exact class decoding, resampled geometry), not as the original GeoTIFFs.
+* No river-gauge or field observations were available. ULAK is a screening and learning tool, not an operational flood-alert system.
 
 ## How the analysis works
 
-1. **Catalog verification** (`nisar_catalog.py`, `provenance.py`): granule IDs, times, checksums and footprints are checked against NASA CMR.
-2. **Window read** (`gcov_reader.py`, `run_sudd.py`): only the study window of the `HHHH` and `HVHV` layers is range-read over HTTPS from each GCOV HDF5 file and cached with a SHA-256 hash.
-3. **Compatibility and QC** (`provenance.py`, `timeseries.py`): same track, frame, mode, release, grid and units; mask handling; a spatial-pattern QC rule for whole dates.
-4. **Change analysis** (`sar_change.py`, `timeseries.py`): 5 × 5 multilooking in linear power to 100 m, dB conversion, region statistics on regions fixed in advance from MODIS land cover, common-mode versus region-relative change, trend, persistence, block-bootstrap intervals and permutation tests.
-5. **Independent context** (`reference_data.py`, `fetch_reference.py`): palette-exact decoding of OPERA DSWx and MODIS layers, with checksums and cross-sums.
-6. **Audit** (`audit_measurement.py`, `verify_findings.py`): independent recomputation of headline numbers.
-7. **Outputs** (`report_builder.py`, `ts_figures.py`): JSON reports, overlays and figures used by the web app.
+1. **Catalog verification.** Granule IDs, times, MD5 values and footprints are stored and re-checked against NASA CMR (`nisar_catalog.py`, `provenance.py`).
+2. **Windowed reading.** Only the study window (2224 × 2220 pixels at 20 m) of the `HHHH` and `HVHV` layers is read from each GCOV HDF5 file over HTTPS range requests, then cached with a SHA-256 hash (`run_sudd.py`, `gcov_reader.py`).
+3. **Compatibility and QC.** Same track, frame, release, grid and units are required (24 September is a single-polarisation SHSH acquisition with HH only). A date whose 400 m image does not correlate with the other dates is excluded; the rule never uses change magnitude (`timeseries.py`).
+4. **Statistics.** 5 × 5 multilooking in linear power, then dB. Regions come from MODIS land cover only. Scene-wide change is reported next to region-relative change. Regional change intervals use a spatial block bootstrap; DSWx group and distance-profile intervals use resampling of individual 0.01° analysis cells; associations use date-permutation nulls.
+5. **Independent context.** DSWx-S1, DSWx-HLS and MODIS reference cells with checksums and cross-sums (`reference_data.py`, `fetch_reference.py`).
+6. **Audit.** `audit_measurement.py` and `verify_findings.py` recompute the headline numbers by separate code paths.
 
-Method details: [`source/docs/METHODOLOGY.md`](source/docs/METHODOLOGY.md). Data sources: [`source/docs/DATA_SOURCES.md`](source/docs/DATA_SOURCES.md).
+Method details: [`source/docs/METHODOLOGY.md`](source/docs/METHODOLOGY.md). Sources: [`source/docs/DATA_SOURCES.md`](source/docs/DATA_SOURCES.md).
 
 ## Repository layout
 
-```
-/                      deployed static web app (GitHub Pages): index.html, app.js, lib.js, styles.css, data/, vendor/, demo/
-source/analysis/       Python analysis modules and pytest tests
-source/scripts/        Windows PowerShell setup/run scripts, package builder with credential scan
-source/tests/web/      JavaScript unit tests for the app logic
-source/qa/             Playwright browser checks
-source/data/           catalog snapshot, NASA POWER extract, decoded reference layers, audit results (small text files only)
-source/docs/           methodology, data sources, results, test report, figures
-```
+| Path | Content |
+|---|---|
+| `index.html`, `app.js`, `lib.js`, `styles.css`, `data/`, `demo/`, `vendor/` | The deployed static web app (GitHub Pages serves the repository root) |
+| `source/analysis/` | Python analysis modules and their pytest tests |
+| `source/scripts/` | Windows PowerShell setup and run scripts; static-package builder with a credential scan |
+| `source/data/` | Small public inputs only: CMR catalog snapshot, NASA POWER extract, reference cells, manifests, audit results |
+| `source/docs/` | Methodology, data sources, results, audit and test reports |
+| `source/tests/web/`, `source/qa/` | JavaScript logic tests and the browser QA script |
 
-The web app at the repository root is plain HTML, CSS and JavaScript with a vendored copy of Leaflet 1.9.4. It needs no build step and no server code.
+Satellite pixels are **not** stored here. Running the pipeline writes them to `source/data/derived/`, which is git-ignored. The published result blocks are in [`data/timeseries.json`](data/timeseries.json).
 
-## Reproduce
+## Reproduce the results
 
-Requirements: Python 3.10 or newer, Git, and (optional) Node.js 20+ for the JavaScript tests. Commands are for Windows PowerShell.
+Requirements: Windows PowerShell, Python 3.10 or newer, Node.js 18 or newer (for the JavaScript tests), and a free [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) account that has accepted the ASF data-use terms.
 
 ```powershell
 git clone https://github.com/h6q/ulak-sar-evidence-atlas.git
 cd ulak-sar-evidence-atlas\source
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r analysis\requirements.txt
+powershell -ExecutionPolicy Bypass -File scripts\ulak_setup.ps1      # virtual environment, dependencies, tests, live CMR check
+powershell -ExecutionPolicy Bypass -File scripts\ulak_run_sudd.ps1   # reads the 10 study windows; asks for your Earthdata token at a hidden prompt
+.\.venv\Scripts\python.exe analysis\timeseries.py                    # time-series analysis, figures, web payload
+.\.venv\Scripts\python.exe analysis\verify_findings.py               # independent recomputation of the headline findings
+```
 
-# The scripts expect a working copy of the site in source\web (ignored by Git):
-New-Item -ItemType Directory -Force web | Out-Null
-Copy-Item ..\index.html, ..\app.js, ..\lib.js, ..\styles.css web
-Copy-Item ..\data, ..\vendor, ..\demo web -Recurse -Force
+Tests (no credentials or satellite data needed):
 
-# Tests that need no NASA download
+```powershell
 .\.venv\Scripts\python.exe -m pytest analysis -q
 node --test tests\web\lib.test.js
 ```
 
-To repeat the measurements you need a free NASA Earthdata Login (https://urs.earthdata.nasa.gov/) with the ASF data-use terms accepted, and a user token (*Generate Token* on your profile page).
+**Earthdata authentication.** Create a token at https://urs.earthdata.nasa.gov/ (Generate Token). The run script asks for it at a hidden prompt, or reads the `EARTHDATA_TOKEN` environment variable for the current session. The token is never written to disk, logs or outputs. Never commit a token, `.netrc` or `.env` file.
+
+To view your own results in the app, copy the site files next to the outputs and serve them locally:
 
 ```powershell
-# Reads the 10 study windows from NASA (about 10 x 60 MB cache, not the 1.8 GB files).
-# The script asks for the token at a hidden prompt and removes it from the session afterwards.
-powershell -ExecutionPolicy Bypass -File scripts\ulak_run_sudd.ps1
-
-.\.venv\Scripts\python.exe analysis\timeseries.py          # time series, statistics, figures, web payload
-.\.venv\Scripts\python.exe analysis\verify_findings.py     # independent recomputation of the headline numbers
-.\.venv\Scripts\python.exe analysis\audit_measurement.py   # audit of the two-date report
-py -m http.server 8000 --directory web                     # view the app at http://localhost:8000
+Copy-Item ..\index.html, ..\app.js, ..\lib.js, ..\styles.css -Destination web
+Copy-Item ..\vendor -Destination web -Recurse
+py -m http.server 8000 --directory web
 ```
 
-**Never put your Earthdata token in a file in this repository, in a commit or in an issue.** The pipeline reads it only from the `EARTHDATA_TOKEN` environment variable or the hidden prompt and never writes it to disk.
-
-Dependencies: NumPy, rasterio, h5py, fsspec, aiohttp, pyproj, Pillow, Matplotlib, pytest (see [`source/analysis/requirements.txt`](source/analysis/requirements.txt)); Playwright only for `source/qa/browser_qa.py`.
-
-Test status at release (2026-11-14): 55 Python tests, 11 JavaScript tests and 34/34 browser checks passed on the team's full working copy. In a fresh clone one Python test is skipped because it needs the locally built NISAR cache. Details: [`source/docs/TEST_REPORT.md`](source/docs/TEST_REPORT.md).
+Dependencies are pinned by range in [`source/analysis/requirements.txt`](source/analysis/requirements.txt): NumPy, SciPy, h5py, rasterio, pyproj, fsspec, aiohttp, Matplotlib, Pillow, pytest. The web app uses Leaflet 1.9.4 (vendored) and no build step.
 
 ## Use of AI tools
 
-This project was built with substantial help from generative AI assistants, used under the team's direction: **ChatGPT and Codex (OpenAI)** and **Claude (Anthropic)**. They were used to:
-
-* search and summarise official NASA, ASF and Space Apps documentation and query public NASA catalogs;
-* draft most of the Python, JavaScript and PowerShell code and the automated tests;
-* help design, implement and independently re-check the statistical analysis;
-* draft documentation, the submission text and slide text, and write the code that plots the charts.
-
-The team chose the challenge and study area, obtained the data with its own Earthdata credentials, ran the code on its own computer, and is responsible for the scientific interpretation. All numbers come from running the code on real NISAR data; none were generated by an AI model. No AI-generated images, video or audio are used: images are NASA GIBS renderings, real application screenshots or charts plotted from measured values. No NASA or ISRO logos or mission identifiers are used, and no endorsement by NASA or ISRO is implied.
+Generative AI assistants (OpenAI ChatGPT and Codex, Anthropic Claude) were used under the team's direction to search and summarise official documentation, draft Python, JavaScript and PowerShell code and tests, help design and independently re-check the statistical analysis, and draft documentation and slide text. AI-assisted source files say so in their first lines. Every number comes from running the code on real NISAR data; none was produced by a language model. No AI-generated images, video or audio are used, and no NASA or ISRO logos or mission identifiers. The choice of challenge and study area, data acquisition with the team's own credentials, and the final scientific interpretation are the team's.
 
 ## Licence and attribution
 
-* Team ULAK's own code and documentation: MIT License, see [`LICENSE`](LICENSE).
-* Third-party components and data: see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
-* NISAR data: NASA-ISRO SAR Mission, distributed by the Alaska Satellite Facility DAAC. OPERA DSWx products contain modified Copernicus Sentinel data. Basemap © OpenStreetMap contributors.
+Team ULAK's own code and documentation: MIT License, see [`LICENSE`](LICENSE). Third-party components and data keep their own terms, see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+NISAR data courtesy of NASA and ISRO, distributed by the Alaska Satellite Facility DAAC. OPERA products contain modified Copernicus Sentinel data. Basemap © OpenStreetMap contributors. No NASA or ISRO endorsement is implied.
